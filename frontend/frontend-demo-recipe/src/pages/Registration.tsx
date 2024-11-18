@@ -3,8 +3,9 @@ import { ChefHat, ArrowRight } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-export function LoginForm() {
+export function RegistrationForm() {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -12,11 +13,12 @@ export function LoginForm() {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isLoading, setIsLoading] = useState(false); 
+  const [apiError, setApiError] = useState<string | null>(null); 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -26,7 +28,7 @@ export function LoginForm() {
     e.preventDefault();
     const newErrors: Record<string, string> = {};
 
-    // Basic validation
+    // Validation
     if (!formData.username.trim()) {
       newErrors.username = 'Username is required';
     }
@@ -46,17 +48,32 @@ export function LoginForm() {
       return;
     }
 
-    // Handle successful form submission here
-    console.log('Form submitted:', formData);
+    setApiError(null); 
+    setIsLoading(true); // Start loading
+
+    // Make API request to submit the form data
+    handleHomeSubmit(formData);
   };
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const handleHomeSubmit = async (data: { username: string; email: string; password: string }) => {
+    try {
+      const response = await axios.post('https://671b3d282c842d92c37f0807.mockapi.io/api/recipe/Signup', data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-  const handleHomeSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    navigate('/home');
+      console.log('Account created successfully', response.data);
+      navigate('/home')
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || error.message || 'An unexpected error occurred';
+      setApiError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
-
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -74,7 +91,7 @@ export function LoginForm() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow-md rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleHomeSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <Input
               label="Username"
               name="username"
@@ -105,9 +122,17 @@ export function LoginForm() {
               autoComplete="current-password"
             />
 
+            {apiError && (
+              <div className="text-red-500 text-sm">{apiError}</div>
+            )}
+
             <div>
-              <Button type="submit" className="w-full flex items-center justify-center">
-                Create Account
+              <Button
+                type="submit"
+                className="w-full flex items-center justify-center"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Creating Account...' : 'Create Account'}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
