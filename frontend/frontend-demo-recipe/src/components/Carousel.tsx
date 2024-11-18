@@ -1,4 +1,3 @@
-import { Search } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 
 export function Carousel() {
