@@ -1,10 +1,9 @@
-// import React from 'react';
-import { PlusCircle } from "lucide-react";
-import { Navbar } from "../components/Navbar";
+import  { Navbar } from "../components/Navbar";
 import { Carousel } from "../components/Carousel";
-import { SearchBar } from "../components/SearchBar";
 import { RecipeCard } from "../components/RecipeCard";
 import { CreateRecipeButton } from "../components/CreateRecipeButton";
+import Footer from "../components/Footer";
+import FeaturedCollections from "../components/FeaturedCollections";
 
 const topRecipes = [
   {
@@ -50,8 +49,8 @@ export function HomePage() {
         <Carousel />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex justify-center items-center mb-8">
-            <CreateRecipeButton/>
+          <div>
+            <FeaturedCollections/>
           </div>
 
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Top Recipes</h2>
@@ -62,6 +61,7 @@ export function HomePage() {
           </div>
         </div>
       </main>
+      <Footer/>
     </div>
   );
 }
