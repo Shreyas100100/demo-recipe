@@ -6,11 +6,12 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function LandingPage() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-white">
+    <><div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="fixed w-full bg-white/95 backdrop-blur-sm z-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +29,9 @@ function LandingPage() {
               >
                 Log in
               </button>
-              <button className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium">
+              <button 
+              onClick={()=>{navigate("/register")}}
+              className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium">
                 Sign up
               </button>
             </div>
@@ -50,34 +53,24 @@ function LandingPage() {
                 bhai bhai bhai bhai bhai
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <button 
-                onClick={() => navigate("/login")}
-                className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium flex items-center justify-center">
+                <button
+                  onClick={() => navigate("/register")}
+                  className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium flex items-center justify-center">
                   Get Started Free
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </button>
-                {/* <div className="relative flex-1 max-w-lg">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                  <input
-                    type="text"
-                    placeholder="Search recipes..."
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
-                  />
-                </div> */}
               </div>
             </div>
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=800"
                 alt="Cooking image"
-                className="rounded-2xl shadow-2x1"
-              />
+                className="rounded-2xl shadow-2x1" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Features Section */}
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
@@ -108,7 +101,6 @@ function LandingPage() {
         </div>
       </div>
 
-      {/* Featured Recipes */}
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">
@@ -118,20 +110,17 @@ function LandingPage() {
             {[
               {
                 title: "Homemade Pizza",
-                image:
-                  "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=400",
+                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=400",
                 time: "45 mins",
               },
               {
                 title: "Fresh Pasta",
-                image:
-                  "https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&q=80&w=400",
+                image: "https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&q=80&w=400",
                 time: "30 mins",
               },
               {
                 title: "Berry Smoothie",
-                image:
-                  "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&q=80&w=400",
+                image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&q=80&w=400",
                 time: "5 mins",
               },
             ].map((recipe, index) => (
@@ -140,8 +129,7 @@ function LandingPage() {
                   <img
                     src={recipe.image}
                     alt={recipe.title}
-                    className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300"
-                  />
+                    className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                     <h3 className="text-white font-semibold text-lg">
                       {recipe.title}
@@ -157,7 +145,8 @@ function LandingPage() {
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </div></>
   );
 }
 
