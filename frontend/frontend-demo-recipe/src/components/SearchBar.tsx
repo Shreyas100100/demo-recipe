@@ -23,7 +23,6 @@ export function SearchBar() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Using debounced query to avoid too many requests while typing
   const debouncedQuery = useDebounce(query, 300);
 
   useEffect(() => {
@@ -38,8 +37,8 @@ export function SearchBar() {
       try {
         // Fetch countries from the Restcountries API
         const response = await fetch(
-          // `https://restcountries.com/v3.1/name/${debouncedQuery}`
-          `YOUR_API_URL_HERE/${debouncedQuery}`
+          `https://restcountries.com/v3.1/name/${debouncedQuery}`
+          // `YOUR_API_URL_HERE/${debouncedQuery}`
         );
 
         if (!response.ok) {
@@ -83,7 +82,7 @@ export function SearchBar() {
         <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-300" />
       </div>
       {loading && (
-        <div className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition duration-150 animate-pulse">
+        <div className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition duration-150 animate-pulse">
           <div className="flex items-center justify-center">
             <svg
               className="w-8 h-8 text-white animate-spin"
@@ -110,7 +109,7 @@ export function SearchBar() {
         </div>
       )}
       {error && (
-        <div className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition duration-150">
+        <div className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition duration-150">
           {error}
         </div>
       )}
@@ -119,7 +118,7 @@ export function SearchBar() {
           countries.slice(0, 3).map((country: any) => (
             <li
               key={country.cca3}
-              className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition duration-150"
+              className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition duration-150"
             >
               <h4 className="text-lg font-semibold text-white-900">
                 {country.name.common}
