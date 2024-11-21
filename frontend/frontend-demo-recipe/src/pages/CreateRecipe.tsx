@@ -233,7 +233,7 @@ const CreateRecipePage = () => {
               <h2 className="text-xl text-orange-600 font-bold mb-4">Steps</h2>
               <button
                 onClick={addStep}
-                className="flex items-center text-sm text-emerald-600 hover:text-emerald-700"
+                className="flex items-center text-xxl text-orange-600 hover:text-emerald-700"
               >
                 <Plus className="h-4 w-4 mr-1" />
                 Add Step
@@ -242,7 +242,7 @@ const CreateRecipePage = () => {
             <div className="space-y-3">
               {steps.map((step, index) => (
                 <div key={index} className="flex gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 font-medium">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-orange-100 text-oeange-600 font-medium">
                     {index + 1}
                   </span>
                   <textarea
