@@ -5,7 +5,7 @@ import { Input } from '../components/Input';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export function RegistrationForm() {
+export default function RegistrationForm() {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -51,7 +51,6 @@ export function RegistrationForm() {
     setApiError(null); 
     setIsLoading(true); // Start loading
 
-    // Make API request to submit the form data
     handleHomeSubmit(formData);
   };
 
