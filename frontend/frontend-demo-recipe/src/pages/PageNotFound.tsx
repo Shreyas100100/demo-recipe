@@ -5,7 +5,7 @@ export const PageNotFound = () => {
 
       <h2 className="mt-4 text-3xl font-bold">Page Not Found</h2>
       <p className="mt-2 text-lg text-gray-600">
-        Oops! It seems like you are trying to naviagte to the wrogn page
+        Oops! It seems like you are trying to naviagte to the wrong page
       </p>
 
       <button
